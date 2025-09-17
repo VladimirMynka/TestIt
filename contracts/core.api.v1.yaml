@@ -1,0 +1,64 @@
+id: core.api.v1
+purpose: >-
+  Define the REST API surface for the conversational core service so that
+  clients and plugins interact consistently.
+preconditions:
+  - Core service is deployed with networking access to PostgreSQL and plugin endpoints.
+  - Authentication/authorization schemes are configured per security policy (see SECURITY.md — pending).
+guarantees:
+  - Provide health, messaging, and plugin orchestration endpoints over HTTPS.
+  - Maintain backward compatibility within v1.x by avoiding breaking changes or by
+    providing dual-version routes.
+  - Emit structured logs prefixed with `LLMLOG|` for every request lifecycle event.
+interfaces:
+  http:
+    base_path: /api/v1
+    endpoints:
+      - method: GET
+        path: /health
+        description: Liveness and readiness indicators.
+        response_schema_ref: /core/schemas/health.json (pending)
+      - method: POST
+        path: /dialogs/{dialog_id}/messages
+        description: Submit a message into an existing dialog.
+        request_schema_ref: /core/schemas/dialog_message.json (pending)
+        response_schema_ref: /core/schemas/dialog_state.json (pending)
+      - method: POST
+        path: /dialogs
+        description: Create a new dialog context and optional initial message.
+        request_schema_ref: /core/schemas/dialog_create.json (pending)
+        response_schema_ref: /core/schemas/dialog_state.json (pending)
+  events:
+    logs:
+      format: LLMLOG|{timestamp}|core.api|{level}|{code}|{message}|ctx={json}
+      transport: stdout / centralized log collector.
+  db:
+    tables:
+      - name: dialogs
+        version: 0
+        status: planned
+      - name: messages
+        version: 0
+        status: planned
+versioning_compatibility:
+  scheme: semver
+  notes: Breaking changes require incrementing the major version and providing a migration plan.
+tests:
+  - type: contract
+    description: Validate schema compliance and HTTP status codes for each endpoint.
+  - type: integration
+    description: Simulate dialog lifecycle with mock plugins.
+security:
+  authn: Token-based (bearer/JWT placeholder)
+  authz: Scope tags aligning with plugin capabilities (detailed policy pending)
+  rate_limits: To be defined via gateway or FastAPI middleware.
+observability:
+  metrics:
+    - name: core.api.request.latency
+      description: Histogram of endpoint latencies.
+    - name: core.api.request.error_rate
+      description: Error ratio by endpoint and plugin tag.
+  tracing: Propagate `X-Request-ID` header across internal calls.
+links:
+  - <<AC_ANCHOR|DOC|META|anchors@v1>>
+  - <<AC_ANCHOR|DOC|SOT|index@v1>>

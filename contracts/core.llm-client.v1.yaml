@@ -1,0 +1,48 @@
+id: core.llm-client.v1
+purpose: >-
+  Specify the shared LLM client abstraction to standardize how the core service
+  and plugins communicate with external language model providers.
+preconditions:
+  - Environment variables for provider credentials are available via secure injection.
+  - Network access to configured LLM endpoints is permitted and audited.
+guarantees:
+  - Provide a transport-agnostic interface supporting synchronous and asynchronous calls.
+  - Enforce request/response logging with redaction of sensitive payload fields.
+  - Offer retry and timeout policies configurable per provider profile.
+interfaces:
+  python:
+    module: core.llm_client (planned)
+    classes:
+      - name: LLMClient
+        methods:
+          - name: generate
+            description: Submit prompt payloads and stream/combine the result.
+            params_schema_ref: /core/schemas/llm_generate_request.json (pending)
+            return_schema_ref: /core/schemas/llm_generate_response.json (pending)
+          - name: classify
+            description: Execute lightweight classification prompts.
+            params_schema_ref: /core/schemas/llm_classify_request.json (pending)
+            return_schema_ref: /core/schemas/llm_classify_response.json (pending)
+  config:
+    path: /ops/config/llm-profiles.yaml (pending)
+versioning_compatibility:
+  scheme: semver
+  notes: Minor versions may add optional parameters; major versions adjust base contract.
+tests:
+  - type: unit
+    description: Validate retry/backoff orchestration via mocked transport.
+  - type: integration
+    description: Exercise multi-provider routing using sandbox credentials.
+security:
+  secrets: Inject via environment variables only; never commit static keys.
+  compliance: Maintain audit logs for provider usage and cost metrics.
+observability:
+  metrics:
+    - name: llm_client.request.latency
+      description: Latency distribution per provider and operation.
+    - name: llm_client.request.failures
+      description: Failure counts by provider, reason, and retry outcome.
+  logs: Emit `LLMLOG|core.llm_client|...` entries for each request lifecycle.
+links:
+  - <<AC_ANCHOR|DOC|META|anchors@v1>>
+  - <<AC_ANCHOR|DOC|SOT|index@v1>>

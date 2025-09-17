@@ -1,0 +1,37 @@
+# <<AC_ANCHOR|METRIC|PROJECT|registry@v1>>
+metrics:
+  - id: task_uncertainty
+    description: Heuristic estimate of unclear scope or missing documentation.
+    range: [0, 1]
+    default_threshold: 0.6
+    higher_is: risk
+  - id: stigmergy_quality
+    description: Coverage and freshness of anchors/SSOT references.
+    range: [0, 1]
+    default_threshold: 0.6
+    higher_is: quality
+  - id: docs_clutter
+    description: Proportion of outdated or duplicated documentation fragments.
+    range: [0, 1]
+    default_threshold: 0.4
+    higher_is: risk
+  - id: architecture_level
+    description: Degree of modularization, protocols, and ADR completeness.
+    range: [0, 1]
+    default_threshold: 0.7
+    higher_is: quality
+  - id: ci_health
+    description: Status of automated checks (lint, test, build).
+    range: [0, 1]
+    default_threshold: 0.7
+    higher_is: quality
+  - id: security_posture
+    description: Coverage and success of security tooling (SAST, secret scans).
+    range: [0, 1]
+    default_threshold: 0.7
+    higher_is: quality
+  - id: compatibility_risk
+    description: Likelihood that changes break existing contracts.
+    range: [0, 1]
+    default_threshold: 0.2
+    higher_is: risk

@@ -1,0 +1,47 @@
+id: plugin.contract.v1
+purpose: >-
+  Define the integration requirements for external plugin services interacting
+  with the core conversational platform.
+preconditions:
+  - Plugin service exposes a reachable REST endpoint and registers with the core.
+  - Plugin implementers obtain an assigned tag (intent identifier) from the platform admin.
+guarantees:
+  - Plugin descriptor includes activation conditions, request/response schemas,
+    and security scopes.
+  - Plugins respond within agreed SLAs and provide structured error payloads.
+interfaces:
+  http:
+    registration:
+      method: POST
+      path: /plugins/register (core-managed)
+      description: Register plugin metadata, activation rules, and schema references.
+      request_schema_ref: /core/schemas/plugin_register.json (pending)
+      response_schema_ref: /core/schemas/plugin_descriptor.json (pending)
+    invocation:
+      method: POST
+      path: /invoke
+      description: Core-to-plugin invocation contract (executed on plugin service).
+      request_schema_ref: /plugins/_templates/schemas/request.json (template)
+      response_schema_ref: /plugins/_templates/schemas/response.json (template)
+versioning_compatibility:
+  scheme: semver
+  notes: Plugin descriptors must declare supported contract versions; dual support required during migrations.
+tests:
+  - type: contract
+    description: Validate plugin descriptors against JSON Schema templates.
+  - type: integration
+    description: Execute sample invocation flows with mock plugins.
+security:
+  authn: Mutual token exchange (core issues plugin tokens; plugin validates signature).
+  authz: Scope tags derived from plugin capabilities; enforced by the core at invocation time.
+  rate_limits: Negotiated per plugin; enforced by API gateway or middleware.
+observability:
+  logs: Plugins must emit `LLMLOG|plugin|{tag}|...` lines with correlation IDs from the core.
+  metrics:
+    - name: plugin.response.latency
+      description: Invocation latency histogram per plugin tag.
+    - name: plugin.response.error_rate
+      description: Error ratios segmented by plugin tag and code.
+links:
+  - <<AC_ANCHOR|DOC|META|anchors@v1>>
+  - <<AC_ANCHOR|DOC|SOT|index@v1>>

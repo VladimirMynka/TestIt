@@ -1,0 +1,30 @@
+# <<AC_ANCHOR|LOG|OPS|compose@v1>>
+# Docker Compose skeleton describing core, database, and plugin services.
+# All services are placeholders with no executable components yet.
+version: '3.9'
+services:
+  core:
+    build:
+      context: .
+      dockerfile: ops/docker/core.Dockerfile
+    command: ["echo", "Core service implementation pending"]
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/testit
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: testit
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  plugin-generator:
+    build:
+      context: .
+      dockerfile: ops/docker/plugin-base.Dockerfile
+    command: ["echo", "Plugin generator placeholder"]
+volumes:
+  db-data:
+    driver: local

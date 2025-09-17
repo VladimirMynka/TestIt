@@ -1,0 +1,19 @@
+# <<AC_ANCHOR|CONTRACT|REGISTRY|root@v1>>
+# Contract Registry — authoritative mapping of contract IDs to files and versions.
+# Update this registry whenever a contract is added or revised.
+contracts:
+  - id: core.api.v1
+    path: core.api.v1.yaml
+    version: 1.0.0
+    status: draft
+    description: Core REST API guarantees and compatibility notes.
+  - id: core.llm-client.v1
+    path: core.llm-client.v1.yaml
+    version: 1.0.0
+    status: draft
+    description: Shared LLM client abstraction for core and plugins.
+  - id: plugin.contract.v1
+    path: plugin.contract.v1.yaml
+    version: 1.0.0
+    status: draft
+    description: Minimum interface requirements for plugins integrating with the core.

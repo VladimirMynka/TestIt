@@ -1,0 +1,14 @@
+# <<AC_ANCHOR|PROTOCOL|REGISTRY|root@v1>>
+protocols:
+  - id: ops.mr.v1
+    path: mr.md
+    description: Merge request preparation and submission workflow.
+  - id: ops.release.v1
+    path: release.md
+    description: Release management procedure.
+  - id: ops.plugin-scaffold.v1
+    path: plugin-scaffold.md
+    description: Steps for creating and registering a new plugin service.
+  - id: ops.migration.v1
+    path: migration.md
+    description: Database migration planning and execution workflow.

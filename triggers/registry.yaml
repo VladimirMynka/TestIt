@@ -1,0 +1,11 @@
+# <<AC_ANCHOR|TRIGGER|PROJECT|registry@v1>>
+triggers:
+  - id: !!AC_TRIGGER::SELF_DIAG
+    description: Force metrics self-diagnosis and update roadmap/registry as needed.
+    action: Review metrics registry and record state snapshot.
+  - id: !!AC_TRIGGER::SPLIT_TASK
+    description: Split large or ambiguous tasks into roadmap-ready deliverables.
+    action: Update ROADMAP.md and create protocol entries if missing.
+  - id: !!AC_TRIGGER::CONTRACT_REQUIRED
+    description: Block implementation until relevant contracts are authored or revised.
+    action: Draft/Update contract in `/contracts` and register version.
