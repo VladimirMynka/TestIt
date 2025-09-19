@@ -1,36 +1,38 @@
-KEYWORDS: summary, человек, обзор, архитектура, план
+KEYWORDS: summary, человек, агрегатор, сессии, планирование
 [ANCHOR:PROJECT:TGBOT:HUMAN:SUMMARY]
 <HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY">
-# Сводка для людей (S004)
+# Индекс человеко-ориентированных отчётов
 
-<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:HIGHLIGHTS">
-## Ключевые результаты
-- Закрыты архитектурные Issues A-001…A-003: добавлены контракт Telegram-бота, схемы ядра (`v1alpha`) и обновлены документы по регистрации плагинов.
-- Зафиксированы стратегические решения: используем OpenAI как основного провайдера LLM, Telegram работает в режиме long polling, Redis подключён для кеша и очередей.
-- Переструктурирован каталог Issues (`BACKLOG/IN_PROGRESS/CLOSED/REJECTED`) — задача D-001 переведена в работу, остальные ждут разблокировки.
-- Обновлены Roadmap, архитектура, триггеры и совместимость под новые события (`plugin_failed`, `plugin_heartbeat_missed`) и Redis-мониторинг.
-<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:HIGHLIGHTS">
+<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:AGGREGATION-STATUS">
+## Статус агрегации
+- Последняя подтверждённая агрегация: **S006** (2025-09-19T12:30:00Z).
+- Ответственный агрегатор: назначается в `docs/PROTOCOLS/DEV_SESSION.md`.
+- Источник истины по содержанию — файлы в `sessions/`.
+<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:AGGREGATION-STATUS">
 
-<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:NEXT">
-## Что дальше
-- Завершить D-001 (конфигурация Python/poetry, базовые зависимости) с учётом Redis и OpenAI ключей.
-- Подготовить ядро (D-002…D-004) используя схемы `v1alpha`, после чего переходить к плагинам и Telegram-адаптеру.
-- Настроить docker-compose/CI (D-008, D-009) и затем тестовый контур (T-001…T-003), опираясь на новые контракты и триггеры.
-<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:NEXT">
+<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:SESSION-INDEX">
+## Навигация по сессиям
+| Сессия | Статус | Ссылка |
+|--------|--------|--------|
+| S006 | подтверждено | `sessions/S006/summary.md` |
+| S005 | подтверждено | `sessions/S005/summary.md` |
+| S004 | подтверждено | `sessions/S004/summary.md` |
+<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:SESSION-INDEX">
 
-<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:QUESTIONS">
-## Вопросы к высшему уровню
-*(на текущую сессию открытых вопросов нет; Q002–Q004 закрыты решениями S004)*
-<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:QUESTIONS">
+<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:QUEUE">
+## Очередь на агрегацию
+На момент обновления очереди нет. Создавайте change-файлы в `changes/summary-changes-SXXX.md` и добавляйте ссылку в таблицу ниже.
 
-<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:METRICS">
-## Метрики
-- M-DOC-COVERAGE: 1.0 (контракты и Roadmap синхронизированы).
-- M-ROADMAP-HEALTH: 1.0 (обновлено в S004).
-- M-METRICS-FRESHNESS: 0 дней (лог `S004` будет добавлен).
-- M-CORE-CONTRACT: 0.85 (схемы `v1alpha` и обновлённый контракт ядра опубликованы).
-- M-PLUGIN-COVERAGE: 0.8 (manifest и события дополнены, реализация впереди).
-- M-RELEASE-HEALTH: 0 (CI не настроен, задачи D-008…D-009 в бэклоге).
-<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:METRICS">
+| Change-файл | Автор | Дата | Статус проверки |
+|-------------|-------|------|-----------------|
+| *(пусто)* | — | — | — |
+<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:QUEUE">
+
+<HARMONY:BEGIN name="PROJECT:TGBOT:HUMAN:SUMMARY:PROTOCOL">
+## Связанные протоколы и метрики
+- Протокол агрегации: `human-friendly/AGGREGATION_PROTOCOL.md`.
+- Метрика свежести документации: `M-DOC-AGGREGATION-LAG` (см. `docs/METRICS/STATE_DEFINITIONS.md`).
+- При обработке change-файлов фиксируйте ссылки на PR/коммиты в журнале протокола.
+<HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY:PROTOCOL">
 
 <HARMONY:END name="PROJECT:TGBOT:HUMAN:SUMMARY">

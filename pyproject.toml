@@ -1,0 +1,81 @@
+# KEYWORDS: pyproject, poetry, зависимости, линтеры, конфигурация
+[tool.poetry]
+name = "testit-telegram-bot"
+version = "0.1.0"
+description = "Промышленная платформа Telegram-бота с плагинами и LLM-классификатором."
+authors = ["Agent Coder <ac@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "core" },
+    { include = "plugins" },
+    { include = "libs" },
+    { include = "bots" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "0.111.0"
+sqlalchemy = { version = "2.0.32", extras = ["asyncio"] }
+alembic = "1.13.2"
+uvicorn = { version = "0.30.1", extras = ["standard"] }
+aiogram = "3.10.0"
+openai = "1.30.1"
+httpx = "0.27.0"
+redis = "5.0.4"
+pydantic = "2.8.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.2"
+pytest-asyncio = "0.23.8"
+ruff = "0.5.5"
+mypy = "1.10.0"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I", "UP", "ASYNC", "N", "Q", "S"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"core/tests/*" = ["S101"]
+"plugins/*/tests/*" = ["S101"]
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+strict = true
+plugins = []
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra"
+testpaths = [
+    "core/tests",
+    "plugins",
+]
+asyncio_mode = "auto"
+
+[tool.bandit]
+skips = ["B101"]
+targets = ["core", "plugins", "libs", "bots"]
+
+[tool.coverage.run]
+branch = true
+source = ["core", "libs", "plugins", "bots"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"

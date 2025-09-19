@@ -1,1 +1,14 @@
+# KEYWORDS: gitignore, окружение, кеш, артефакты, python
 /pre-work
+/.venv/
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.idea/
+.vscode/
+.DS_Store
