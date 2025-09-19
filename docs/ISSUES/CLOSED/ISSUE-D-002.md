@@ -37,10 +37,19 @@ KEYWORDS: issue, developer, fastapi, ядро, менеджер плагинов
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:ISSUE:D-002:CHECKS">
 ## Проверки
-- [ ] Контракты обновлены
+- [x] Контракты обновлены (реализация синхронизирована с `CORE.md` и `SCHEMAS.md`).
 - [ ] Протоколы обновлены
-- [ ] Метрики обновлены
+- [x] Метрики обновлены
 <HARMONY:END name="PROJECT:TGBOT:ISSUE:D-002:CHECKS">
+
+<HARMONY:BEGIN name="PROJECT:TGBOT:ISSUE:D-002:OUTCOME">
+## Итог
+- Реализовано приложение FastAPI (`core/app/main.py`) с middleware трассировки и роутерами `dialogs`, `plugins`, `health`.
+- Создан менеджер плагинов с регистрацией, heartbeat, каталогом и HTTP-вызовами через `httpx.AsyncClient`; добавлены Pydantic-схемы `v1alpha`.
+- Подготовлен модуль зависимостей и юнит-тесты `core/tests/services/test_plugin_manager.py`.
+- Метрики, Roadmap, Summary и Changelog обновлены под выполнение задачи D-002; протоколы изменений не потребовали.
+- Тесты `pytest -q` запускались, но завершились ошибкой из-за отсутствия зависимостей (`fastapi`, `httpx`) в среде выполнения.
+<HARMONY:END name="PROJECT:TGBOT:ISSUE:D-002:OUTCOME">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:ISSUE:D-002:NOTES">
 ## Примечания

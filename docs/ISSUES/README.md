@@ -1,4 +1,4 @@
-KEYWORDS: issues, каталог, статусы, roadmap, процессы
+KEYWORDS: issues, каталог, статусы, change-файлы, агрегатор
 [ANCHOR:PROJECT:TGBOT:ISSUES:README]
 <HARMONY:BEGIN name="PROJECT:TGBOT:ISSUES:README">
 # Каталог Issues
@@ -6,24 +6,31 @@ KEYWORDS: issues, каталог, статусы, roadmap, процессы
 <HARMONY:BEGIN name="PROJECT:TGBOT:ISSUES:README:STRUCTURE">
 ## Структура
 - `BACKLOG/` — задачи, ожидающие разблокировки или планирования.
-- `IN_PROGRESS/` — активные задачи (на момент S004 только `ISSUE-D-001`).
-- `CLOSED/` — завершённые задачи (архитектурные A-001…A-003).
-- `REJECTED/` — отклонённые задачи (создать файл при первом переносе).
+- `IN_PROGRESS/` — активные задачи (меняется только через change-файлы статуса).
+- `CLOSED/` — завершённые задачи.
+- `REJECTED/` — отклонённые задачи (создать при первом переносе).
+- `templates/status-change-template.md` — форма для пакетного обновления статуса.
 <HARMONY:END name="PROJECT:TGBOT:ISSUES:README:STRUCTURE">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:ISSUES:README:PROCESS">
-## Правила ведения
-1. При изменении статуса файл переносится между папками, при необходимости обновляются чек-листы и раздел `## Итог`.
-2. Все Issues сохраняют исходное имя файла (`ISSUE-<ROLE>-<ID>.md`) для стабильных ссылок в Roadmap и планах.
-3. Перед переносом в `CLOSED` обновить связанные контракты/документы и метрики.
-4. `REJECTED` используется для задач, которые больше не планируются; добавить пояснение в `## Итог` и Roadmap.
+## Поток обновления статусов
+1. Исполнитель создаёт файл `docs/ISSUES/changes/{ISSUE_ID}-changes-SXXX.md` по шаблону.
+2. Change-файл фиксируется в сопроводительном PR и добавляется в очередь агрегации (`docs/ROADMAP.md` и `human-friendly/SUMMARY.md`).
+3. Агрегатор переносит Issue в нужную директорию, обновляет связанные документы и проставляет отметку в change-файле.
+4. Прямые перемещения файлов без change-файла запрещены (кроме аварийного восстановления по протоколу).
 <HARMONY:END name="PROJECT:TGBOT:ISSUES:README:PROCESS">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:ISSUES:README:LINKS">
 ## Связанные документы
 - Roadmap: `docs/ROADMAP.md`
-- План MVP: `docs/PLANS/MVP_DEPENDENCIES.md`
-- Контракты: `docs/CONTRACTS/`
+- Протокол агрегации: `human-friendly/AGGREGATION_PROTOCOL.md`
+- Протокол сессии: `docs/PROTOCOLS/DEV_SESSION.md`
 <HARMONY:END name="PROJECT:TGBOT:ISSUES:README:LINKS">
+
+<HARMONY:BEGIN name="PROJECT:TGBOT:ISSUES:README:RESPONSIBILITY">
+## Ответственность
+- Источник истины по статусу задачи — её расположение в каталоге после агрегации.
+- Change-файлы хранятся до подтверждения; после обработки агрегатор обязан указать результат и удалить/архивировать файл.
+<HARMONY:END name="PROJECT:TGBOT:ISSUES:README:RESPONSIBILITY">
 
 <HARMONY:END name="PROJECT:TGBOT:ISSUES:README">

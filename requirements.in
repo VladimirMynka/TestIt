@@ -1,0 +1,15 @@
+# KEYWORDS: requirements, зависимости, исходник, python, сборка
+# Источник истины — requirements.txt; этот файл служит входом для генерации закреплённых версий.
+fastapi
+sqlalchemy[asyncio]
+alembic
+uvicorn[standard]
+aiogram
+openai
+httpx
+redis
+pydantic
+pytest
+pytest-asyncio
+ruff
+mypy

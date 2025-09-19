@@ -41,10 +41,21 @@ KEYWORDS: telegram-bot, плагины, llm, fastapi, документация
 <HARMONY:BEGIN name="PROJECT:TGBOT:README:GETTING-STARTED">
 ## Как начать
 1. Прочитайте `docs/ROADMAP.md` и актуальные контракты подсистем.
-2. Следуйте протоколу `docs/PROTOCOLS/DEV_SESSION.md` для планирования работы.
-3. Для новых плагинов используйте контракт `docs/CONTRACTS/plugins/MANIFEST.md`.
-4. Перед PR убедитесь, что метрики обновлены и описаны в `docs/METRICS/logs/`.
+2. Запустите `scripts/bootstrap/setup_env.sh` для создания виртуального окружения и установки зависимостей из `requirements.txt` (используется `python>=3.11`).
+3. Скопируйте `.env.example` в `.env` и заполните ключи (`OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `REDIS_URL`, `POSTGRES_DSN`, `LLM_MODEL`).
+4. Следуйте протоколу `docs/PROTOCOLS/DEV_SESSION.md` для планирования работы и запуска проверок (`pytest`, `ruff`, `mypy`, `bandit`, `safety`, `detect-secrets`).
+5. Запустите локальный API: `uvicorn core.app.main:create_app --reload` (использует реализованный каркас FastAPI).
+6. Для новых плагинов используйте контракт `docs/CONTRACTS/plugins/MANIFEST.md`.
+7. Перед PR убедитесь, что метрики обновлены и описаны в `docs/METRICS/logs/`.
 <HARMONY:END name="PROJECT:TGBOT:README:GETTING-STARTED">
+
+<HARMONY:BEGIN name="PROJECT:TGBOT:README:ENV">
+## Управление зависимостями
+- `pyproject.toml` — основной источник конфигурации (`tool.poetry`, `ruff`, `mypy`, `pytest`).
+- `requirements.in` → `requirements.txt` — процесс закрепления версий; обновляйте через `poetry export --with dev --format requirements.txt --output requirements.txt`.
+- Скрипт `scripts/bootstrap/setup_env.sh` автоматически обновляет виртуальное окружение и шаблон `.env`.
+Источник истины — `docs/CONTRACTS/CORE.md` и протокол `docs/PROTOCOLS/DEV_SESSION.md`.
+<HARMONY:END name="PROJECT:TGBOT:README:ENV">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:README:REFERENCE">
 ## Быстрые ссылки

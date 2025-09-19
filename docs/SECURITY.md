@@ -9,6 +9,7 @@ KEYWORDS: безопасность, политика, токены, плагин
 2. **Secure Coding:** следуем OWASP ASVS, проверяем ввод/вывод плагинов по JSON Schema, используем Pydantic для валидации.
 3. **Audit Trail:** все действия (пользователь, плагин, система) записываются в `audit_logs` (контракт БД) с `trace_id`.
 4. **Zero Trust:** плагины получают только необходимые scopes, все запросы проходят через TLS и проверку токенов.
+5. **Template-Only Env:** в репозитории хранится только `.env.example`; реальные `.env` файлы игнорируются (`.gitignore`) и заполняются локально.
 <HARMONY:END name="PROJECT:TGBOT:DOCS:SECURITY:PRINCIPLES">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:DOCS:SECURITY:AREAS">

@@ -1,4 +1,4 @@
-KEYWORDS: changelog, версии, история, документация, обновления
+KEYWORDS: changelog, версии, история, документация, change-файлы
 [ANCHOR:PROJECT:TGBOT:DOCS:CHANGELOG]
 <HARMONY:BEGIN name="PROJECT:TGBOT:DOCS:CHANGELOG">
 # Журнал изменений
@@ -11,18 +11,17 @@ KEYWORDS: changelog, версии, история, документация, о�
 <HARMONY:BEGIN name="PROJECT:TGBOT:DOCS:CHANGELOG:UNRELEASED">
 ## [Unreleased]
 ### Добавлено
-- Контракт Telegram-бота `docs/CONTRACTS/bots/TELEGRAM.md` (long polling, aiogram, Redis outbox).
-- Контракт схем `docs/CONTRACTS/core/SCHEMAS.md` (`v1alpha`) и карта соответствия эндпоинтов ↔ событий.
-- Обновлённые каталоги Issues (`docs/ISSUES/{BACKLOG,IN_PROGRESS,CLOSED,REJECTED}`) с фиксацией статусов.
-- Новые триггеры `TR-008…TR-010` для событий плагинов и деградации Redis.
+- Механизм пакетного дополнения документации: change-файлы `human-friendly/`, `docs/ROADMAP/`, `docs/ISSUES/` и соответствующие шаблоны.
+- Протокол агрегации `human-friendly/AGGREGATION_PROTOCOL.md` и метрика `M-DOC-AGGREGATION-LAG` для контроля задержек.
+- Сессионные сводки `human-friendly/sessions/S004…S006/summary.md`, восстановленные из истории репозитория.
 
 ### Изменено
-- `docs/CONTRACTS/CORE.md`, `core/DATABASE.md`, `plugins/MANIFEST.md` расширены регистрацией, heartbeat, Redis Streams и статусами вызовов.
-- `docs/ARCHITECTURE.md`, `core/README.md`, `docs/COMPATIBILITY.md`, `docs/ROADMAP.md`, `human-friendly/SUMMARY.md` синхронизированы с решениями (OpenAI, long polling, Redis).
-- Roadmap и Plan обновлены под новую структуру Issues и статусы задач.
+- `human-friendly/SUMMARY.md` и `docs/ROADMAP.md` превращены в агрегирующие индексы с очередью change-файлов.
+- `docs/CONTRIBUTING.md`, `docs/PROTOCOLS/DEV_SESSION.md`, `docs/PROTOCOLS/README.md`, `docs/PROTOCOLS/templates/PROTOCOL_TEMPLATE.md` обновлены под новый процесс агрегации.
+- `docs/METRICS/STATE_DEFINITIONS.md` дополнён метрикой задержки агрегации и уточнением расчёта `M-ROADMAP-HEALTH`.
 
 ### Исправлено
-- Уточнены ссылки и версии контрактов в `docs/CONTRACTS/README.md` и `docs/TRIGGERS.md`.
+- Восстановлена история Roadmap (change-файлы S003–S006) для снижения git-конфликтов.
 <HARMONY:END name="PROJECT:TGBOT:DOCS:CHANGELOG:UNRELEASED">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:DOCS:CHANGELOG:HISTORY">
