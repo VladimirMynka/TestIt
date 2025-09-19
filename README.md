@@ -8,6 +8,15 @@ KEYWORDS: telegram-bot, плагины, llm, fastapi, документация
 Мы строим промышленную платформу Telegram-бота, где ядро FastAPI, LLM-классификатор и динамические плагины обеспечивают расширяемую функциональность. Репозиторий служит единственным источником правды: требования фиксируются в контрактах `docs/CONTRACTS/`, процессы — в `docs/PROTOCOLS/`, текущее состояние — в `docs/ROADMAP.md` и `human-friendly/SUMMARY.md`.
 <HARMONY:END name="PROJECT:TGBOT:README:MISSION">
 
+<HARMONY:BEGIN name="PROJECT:TGBOT:README:ROLES">
+## Роли участников
+- **LLM-исполнители** — ведут разработку, документацию и метрики, соблюдая протоколы и контракты.
+- **LLM-агрегаторы** — консолидируют change-файлы, поддерживают `human-friendly/SUMMARY.md` и Roadmap, используя
+  `scripts/reporting/change_cards.py` для обзора файлов в каталогах (без ручной регистрации в индексах).
+- **Менеджер проекта (человек)** — не правит репозиторий вручную; он читает только блок `human-friendly/` и инициирует работы через
+  постановку задач LLM-агентам.
+<HARMONY:END name="PROJECT:TGBOT:README:ROLES">
+
 <HARMONY:BEGIN name="PROJECT:TGBOT:README:COMPONENTS">
 ## Ключевые компоненты
 - **Ядро (`core/`)** — FastAPI-приложение, управляющее диалогами, LLM-классификатором и пулом плагинов.
@@ -44,9 +53,11 @@ KEYWORDS: telegram-bot, плагины, llm, fastapi, документация
 2. Запустите `scripts/bootstrap/setup_env.sh` для создания виртуального окружения и установки зависимостей из `requirements.txt` (используется `python>=3.11`).
 3. Скопируйте `.env.example` в `.env` и заполните ключи (`OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `REDIS_URL`, `POSTGRES_DSN`, `LLM_MODEL`).
 4. Следуйте протоколу `docs/PROTOCOLS/DEV_SESSION.md` для планирования работы и запуска проверок (`pytest`, `ruff`, `mypy`, `bandit`, `safety`, `detect-secrets`).
-5. Запустите локальный API: `uvicorn core.app.main:create_app --reload` (использует реализованный каркас FastAPI).
-6. Для новых плагинов используйте контракт `docs/CONTRACTS/plugins/MANIFEST.md`.
-7. Перед PR убедитесь, что метрики обновлены и описаны в `docs/METRICS/logs/`.
+5. Для оценки навигации по документации используйте `python scripts/navigation/context_radar.py` — он подсветит устаревшие зоны.
+6. Запустите локальный API: `uvicorn core.app.main:create_app --reload` (использует реализованный каркас FastAPI).
+7. Для новых плагинов используйте контракт `docs/CONTRACTS/plugins/MANIFEST.md`.
+8. Перед PR выполните `python scripts/metrics/snapshot.py --session-id SXXX`, дополните субъективные метрики и убедитесь, что запись
+   добавлена в `docs/METRICS/logs/`.
 <HARMONY:END name="PROJECT:TGBOT:README:GETTING-STARTED">
 
 <HARMONY:BEGIN name="PROJECT:TGBOT:README:ENV">

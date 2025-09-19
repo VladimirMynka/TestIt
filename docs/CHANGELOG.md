@@ -16,7 +16,7 @@ KEYWORDS: changelog, версии, история, документация, cha
 - Сессионные сводки `human-friendly/sessions/S004…S006/summary.md`, восстановленные из истории репозитория.
 
 ### Изменено
-- `human-friendly/SUMMARY.md` и `docs/ROADMAP.md` превращены в агрегирующие индексы с очередью change-файлов.
+- `human-friendly/SUMMARY.md` и `docs/ROADMAP.md` оформлены как индексы без ручных очередей: change-файлы обнаруживаются по каталогу.
 - `docs/CONTRIBUTING.md`, `docs/PROTOCOLS/DEV_SESSION.md`, `docs/PROTOCOLS/README.md`, `docs/PROTOCOLS/templates/PROTOCOL_TEMPLATE.md` обновлены под новый процесс агрегации.
 - `docs/METRICS/STATE_DEFINITIONS.md` дополнён метрикой задержки агрегации и уточнением расчёта `M-ROADMAP-HEALTH`.
 
